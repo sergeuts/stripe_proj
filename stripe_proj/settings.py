@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from stripe_proj.env_vars import *
 from os import environ
+
 environ['DJANGO_SETTINGS_MODULE'] = 'stripe_proj.settings'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-*@m=-n+ye6z7sdx$ry4%u$kq79k7$rnm603+lxu)etb7kr903v'
+SECRET_KEY = JSK
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

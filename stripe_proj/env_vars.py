@@ -1,0 +1,1 @@
+JSK = 'django-insecure-*@m=-n+ye6z7sdx$ry4%u$kq79k7$rnm603+lxu)etb7kr903v'
