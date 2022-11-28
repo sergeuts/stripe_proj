@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>Buy Item {{ item_id }}</title>
+    <style>
+      .button {
+          background-color: #E5E5E5;
+          {#border: none;#}
+          border-radius: 10px;
+          border-style: solid;
+          border-width: 1px;
+          color: black;
+          padding: 5px 15px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 20px;
+          margin: 4px 2px;
+          cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Item {{ item_id }} </h1>
+    <p>Description of Item {{ item_id }}</p>
+    <p>1111</p>
+    <a href={{ url }} class="button">Buy</a>
+    <script type="text/javascript">
+      var stripe = Stripe('sk_test_51M7QWiJ60IW64VVywW9xeqI08Erecj9gwoGTkWRluPJWG1swCcRgc46EMTu8CDThoPWDixwBfeFJYbYMB9ByzJ60004LHU0Fdt');
+      var buyButton = document.getElementById('buy-button');
+      buyButton.addEventListener('click', function() {
+        // Create a new Checkout Session using the server-side endpoint
+        // Redirect to Stripe Session Checkout
+        fetch('/buy/1', {method: 'GET'})
+        .then(response => return response.json())
+        .then(session => stripe.redirectToCheckout({ sessionId: session.id }))
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buy Item 1</title>
+    <style> {% include  'main.css' %} </style>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet" />
+
+</head>
+
+<body>
+    <a href='admin/' class="button" id="buy-button"> Go to Admin panel</a>
+    <h1>Catalog</h1>
+
+    <div class="catalog">
+    <div class="item_row_header">
+        <div class="field_id"> id </div>
+        <div class="field_name"> Name </div>
+        <div class="field_price"> Price </div>
+        <div class="field_currency"> Currency </div>
+        <div class="field_name"> Amount </div>
+    </div>
+    <form action="make_order" method="post">
+        {% csrf_token %}
+        {% for i in table %}
+            <div class="item_row">
+                <div class="field_id">{{ i.item_id }}</div>
+                <div class="field_name">{{ i.name }}</div>
+                <div class="field_price">{{ i.price }}</div>
+                <div class="field_currency">{{ i.currency }}</div>
+                {{ i.form.as_div }}
+            </div>
+        {% endfor %}
+        <br>
+        {{ currency.as_div }}
+        <button type="submit" class="button" id="buy-button">Create order</button>
+    </form>
+    </div>
+
+{#    <form action="payment" method="post">#}
+{#        {% csrf_token %}#}
+{#        <h1>Item 1</h1>#}
+{#        <p>Description of Item 1</p>#}
+{#        <p>1111</p>#}
+{##}
+{#    </form>#}
+</body>
+</html>

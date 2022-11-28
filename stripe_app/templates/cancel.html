@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>The payment was cancelled!</h1>
+    <form action="index" method="post">
+        {% csrf_token %}
+        <button type="submit">Return to the main page</button>
+    </form>
+</body>
+</html>

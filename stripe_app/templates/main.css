@@ -1,0 +1,64 @@
+body {
+    font-family: Montserrat;
+    font-size: 15pt;
+}
+
+.button {
+    background-color: #E5E5E5;
+    {#border: none;#}
+    font-family: Montserrat;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    color: black;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 20px 2px;
+    cursor: pointer;
+}
+
+.catalog {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-bottom: 20px;
+}
+
+.item_row {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+}
+
+.item_row_header {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+    font-weight: bolder;
+}
+
+.field {
+    width: 20%;
+}
+
+.field_id {
+    width: 5%;
+    text-align: center;
+}
+
+.field_name {
+    width: 15%;
+}
+
+.field_price {
+    width: 15%;
+    text-align: right;
+}
+
+.field_currency {
+    width: 10%;
+    text-align: center;
+}
