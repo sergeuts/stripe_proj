@@ -6,8 +6,8 @@ class Item(models.Model):
     name = models.CharField(max_length=255, verbose_name="Name")
     description = models.TextField(blank=True, verbose_name="Description")
     price = models.DecimalField(blank=False, max_digits=15, decimal_places=2, verbose_name="Price")
-    currency = models.ForeignKey('Currency', blank=True, on_delete=models.PROTECT)
-    tax = models.ForeignKey('Tax', blank=True, on_delete=models.PROTECT, verbose_name="Tax")
+    currency = models.ForeignKey('Currency', default=1, blank=True, on_delete=models.PROTECT)
+    tax = models.ForeignKey('Tax', blank=True, default=1, on_delete=models.PROTECT, verbose_name="Tax")
 
     def __str__(self):
         return self.name
@@ -29,11 +29,13 @@ class Currency(models.Model):
 
 
 class Order(models.Model):
-    number = models.PositiveIntegerField(blank=False, verbose_name="Number")
+    number = models.AutoField(blank=False, primary_key=True, verbose_name="Number")
+    #number = models.PositiveIntegerField(blank=False, primary_key=True, verbose_name="Number")
     date = models.DateField(auto_now_add=True, verbose_name="Date")
     sum = models.DecimalField(blank=False, max_digits=15, decimal_places=2, verbose_name="Order sum")
-    #items = models.ForeignKey('OrderItemsList', blank=True, on_delete=models.PROTECT, verbose_name="Item list")
     discount = models.ForeignKey('Discount', blank=True, on_delete=models.PROTECT)
+    currency = models.ForeignKey('Currency', default=1, blank=True, on_delete=models.PROTECT)
+    description = models.TextField(blank=True, verbose_name="Description")
 
     def __str__(self):
         #return f'№ {self.number} dated {self.date}'
@@ -45,8 +47,8 @@ class OrderItemsList(models.Model):
     item = models.ForeignKey('Item', blank=True, on_delete=models.PROTECT)
     quantity = models.PositiveIntegerField(blank=False, verbose_name="Item quantity")
     sum = models.DecimalField(blank=False, max_digits=15, decimal_places=2, verbose_name="Items price")
-    discount = models.DecimalField(blank=False, max_digits=15, decimal_places=2, verbose_name="Discount")
-    tax = models.DecimalField(blank=True, max_digits=15, decimal_places=2, verbose_name="Tax")
+    discount = models.DecimalField(blank=True, default=1, max_digits=15, decimal_places=2, verbose_name="Discount")
+    tax = models.DecimalField(blank=True, max_digits=15, default=1, decimal_places=2, verbose_name="Tax")
 
     def __str__(self):
         return str(self.order_no)
@@ -84,13 +86,4 @@ Item с полями(name, description, price)
     • Добавить поле Item.currency, создать 2 Stripe Keypair на две разные валюты и в зависимости от валюты выбранного товара предлагать оплату в соответствующей валюте
 '''
 
-def fill_table(table, values):
-    if not table.objects.all().count():
-        for n in values:
-            r = table.objects.create(name=n)
-            r.save()
-
-
-def init_system_tables():
-    fill_table(Gender, ['Male', 'Female'])
 

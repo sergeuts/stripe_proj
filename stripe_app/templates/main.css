@@ -62,3 +62,7 @@ body {
     width: 10%;
     text-align: center;
 }
+
+#id_currency {
+    font-size: 15pt;
+}
